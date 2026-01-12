@@ -5,47 +5,98 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OSHA GARI | Premium Mobile Car Wash & Detailing</title>
   <style>
-    <style>
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  margin: 0;
-  background: #f7f6f2;
-  color: #2b2b2b;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #000;
+  color: #f5f5f5;
+  line-height: 1.6;
 }
 
-header {
-  background: linear-gradient(135deg, #0b1c2d, #132f4c);
-  color: #ffffff;
-  padding: 90px 20px;
-  text-align: center;
+/* HERO SECTION */
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
 }
 
-header h1 {
-  margin: 0;
-  font-size: 3rem;
-  letter-spacing: 2.5px;
-  font-weight: 700;
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: 1;
 }
 
-header p {
-  font-size: 1.25rem;
-  opacity: 0.9;
+/* Dark fade overlay */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 2;
 }
 
-nav {
-  background: #d4b56a;
-  padding: 14px;
-  text-align: center;
+/* NAVIGATION */
+.hero-nav {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 60px;
 }
 
-nav a {
-  color: #1b1b1b;
-  margin: 0 18px;
+.nav-logo {
+  height: 55px;
+}
+
+.nav-links a {
+  color: #eaeaea;
   text-decoration: none;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  margin-left: 28px;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
+.nav-links a:hover {
+  color: #19e6ff;
+}
+
+/* HERO TEXT */
+.hero-content {
+  position: relative;
+  z-index: 3;
+  height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.hero-content h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.hero-content p {
+  margin-top: 14px;
+  font-size: 1.2rem;
+  color: #cfcfcf;
+}
+
+/* SECTIONS */
 section {
   padding: 80px 20px;
   max-width: 1200px;
@@ -53,67 +104,115 @@ section {
 }
 
 h2 {
-  color: #0b1c2d;
-  font-size: 2.1rem;
+  font-size: 2.2rem;
   margin-bottom: 20px;
-  font-weight: 700;
+  color: #19e6ff;
 }
 
+/* GRID / CARDS */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 32px;
+  gap: 28px;
 }
 
 .card {
-  background: #ffffff;
-  padding: 34px;
+  background: #0e0e0e;
+  padding: 30px;
   border-radius: 14px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s ease;
 }
 
-footer {
-  background: #0b1c2d;
-  color: #cfcfcf;
-  text-align: center;
-  padding: 40px;
+.card:hover {
+  transform: translateY(-6px);
 }
 
-.btn {
-  display: inline-block;
-  margin-top: 28px;
-  padding: 14px 34px;
-  background: #0b1c2d;
-  color: #ffffff;
-  text-decoration: none;
-  border-radius: 30px;
-  font-weight: 600;
+/* GALLERY */
+.gallery img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
 }
 
+/* CONTACT */
 .contact-box {
-  background: #ffffff;
+  background: #0e0e0e;
   padding: 36px;
   border-radius: 14px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* BUTTON */
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 14px 30px;
+  background: #19e6ff;
+  color: #000;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: #13c9df;
+}
+
+/* FOOTER */
+footer {
+  background: #000;
+  text-align: center;
+  padding: 40px 20px;
+  color: #888;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero-nav {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .nav-links a {
+    margin: 0 12px;
+  }
 }
 </style>
 
-  </style>
 </head>
 <body>
 
-<header>
+<header class="hero">
+  <video autoplay muted loop playsinline class="hero-video">
+    <source src="assets/video/hero.mp4" type="video/mp4">
+  </video>
+
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
   <h1>OSHA GARI</h1>
-  <p>Premium Mobile Car Wash & Detailing Services</p>
+  <p>Premium Mobile Car Wash & Detailing</p>
+</div>
+
+
+  <nav class="hero-nav">
+    <img src="assets/images/logo.png" alt="Osha Gari Logo" class="nav-logo">
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#gallery">Before & After</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <div class="hero-content">
+    <h1>Premium Mobile Car Wash & Detailing</h1>
+    <a href="#contact" class="btn-primary">Book Now</a>
+  </div>
 </header>
 
-<nav>
-  <a href="#about">About</a>
-  <a href="#services">Services</a>
-  <a href="#gallery">Before & After</a>
-  <a href="#pricing">Pricing</a>
-  <a href="#contact">Contact</a>
-</nav>
 
 <section id="about">
   <h2>About Us</h2>
